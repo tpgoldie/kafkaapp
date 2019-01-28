@@ -53,9 +53,6 @@ public class SendMessage {
 
     SendMessage sendMessage(String value) {
 
-        Mockito.when(configuration.getBootstrapServers()).thenReturn(bootstrapServers);
-        Mockito.when(configuration.getKeySerializer()).thenReturn(keySerializer);
-        Mockito.when(configuration.getValueSerializer()).thenReturn(valueSerializer);
         Mockito.when(configuration.getTopic()).thenReturn(topic);
 
         MessagePublisher producer = new MessagePublisher(configuration, messageProducer);
