@@ -9,13 +9,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static com.tpg.kafka.app.PublishMessage.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MessagePublisherTest {
+public class KafkaMessagePublisherTest {
 
     @Mock
     private MessageChannelConfiguration configuration;
 
     @Mock
     private MessageChannel messageChannel;
+
 
     @Test
     public void publishMessage() {

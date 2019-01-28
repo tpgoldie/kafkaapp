@@ -1,19 +1,20 @@
 package com.tpg.kafka.app;
 
 public class MessagePublisher {
-    private final String topic;
 
-    private final MessageProducer messageProducer;
-
-    MessagePublisher(String topic, MessageProducer messageProducer) {
+    MessagePublisher(String topic, MessageSender messageSender) {
 
         this.topic = topic;
 
-        this.messageProducer = messageProducer;
+        this.messageSender = messageSender;
     }
 
     public void send(String msg) {
 
-        messageProducer.send(topic, msg);
+        messageSender.send(msg);
     }
+
+    private final String topic;
+
+    private final MessageSender messageSender;
 }

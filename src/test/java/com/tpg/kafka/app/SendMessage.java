@@ -15,9 +15,9 @@ public class SendMessage {
         return this;
     }
 
-    SendMessage messageProducer(MessageProducer value) {
+    SendMessage messageProducer(MessageSender value) {
 
-        this.messageProducer = value;
+        this.messageSender = value;
 
         return this;
     }
@@ -26,7 +26,7 @@ public class SendMessage {
 
     SendMessage sendMessage(String value) {
 
-        MessagePublisher producer = new MessagePublisher(topic, messageProducer);
+        MessagePublisher producer = new MessagePublisher(topic, messageSender);
 
         producer.send(value);
 
@@ -37,7 +37,7 @@ public class SendMessage {
 
     SendMessage messageSent(String value) {
 
-        verify(messageProducer).send(topic, value);
+        verify(messageSender).send(value);
 
         return this;
     }
@@ -46,5 +46,5 @@ public class SendMessage {
 
     private String topic;
 
-    private MessageProducer messageProducer;
+    private MessageSender messageSender;
 }

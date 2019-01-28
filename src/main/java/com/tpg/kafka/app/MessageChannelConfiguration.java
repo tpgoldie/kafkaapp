@@ -1,6 +1,6 @@
 package com.tpg.kafka.app;
 
-public interface ProducerConfiguration {
+public interface MessageChannelConfiguration {
 
     String getBootstrapServers();
 
