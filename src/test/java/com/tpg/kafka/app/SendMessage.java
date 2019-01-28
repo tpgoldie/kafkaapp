@@ -1,32 +1,12 @@
 package com.tpg.kafka.app;
 
-import org.mockito.Mockito;
-
 import static org.mockito.Mockito.verify;
 
 public class SendMessage {
 
-    public static SendMessage given() {
+    static SendMessage given() {
 
         return new SendMessage();
-    }
-
-    public SendMessage bootstrapServers(String value) {
-
-        bootstrapServers = value;
-        return this;
-    }
-
-    public SendMessage keySerializer(String value) {
-
-        keySerializer = value;
-        return this;
-    }
-
-    public SendMessage valueSerializer(String value) {
-
-        valueSerializer = value;
-        return this;
     }
 
     SendMessage topic(String value) {
@@ -35,14 +15,7 @@ public class SendMessage {
         return this;
     }
 
-    SendMessage configuration(ProducerConfiguration value) {
-
-        this.configuration = value;
-
-        return this;
-    }
-
-    SendMessage messageAdapter(MessageProducer value) {
+    SendMessage messageProducer(MessageProducer value) {
 
         this.messageProducer = value;
 
@@ -53,9 +26,7 @@ public class SendMessage {
 
     SendMessage sendMessage(String value) {
 
-        Mockito.when(configuration.getTopic()).thenReturn(topic);
-
-        MessagePublisher producer = new MessagePublisher(configuration, messageProducer);
+        MessagePublisher producer = new MessagePublisher(topic, messageProducer);
 
         producer.send(value);
 
@@ -73,15 +44,7 @@ public class SendMessage {
 
     private SendMessage() {}
 
-    private String bootstrapServers;
-
-    private String keySerializer;
-
-    private String valueSerializer;
-
     private String topic;
-
-    private ProducerConfiguration configuration;
 
     private MessageProducer messageProducer;
 }

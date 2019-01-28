@@ -12,29 +12,22 @@ import static com.tpg.kafka.app.SendMessage.given;
 @RunWith(MockitoJUnitRunner.class)
 public class MessagePublisherTest {
     @Mock
-    private ProducerConfiguration configuration;
-
-    @Mock
     private MessageProducer messageProducer;
 
     @InjectMocks
-    private MessagePublisher producer;
+    private MessagePublisher messagePublisher;
 
     @Test
     public void sendMessage() {
 
-        String serializer = StringSerializer.class.getName();
+        final String msg = "Hello World";
 
         given()
-            .bootstrapServers("localhost:9092")
-            .keySerializer(serializer)
-            .valueSerializer(serializer)
             .topic("demo-1")
-            .configuration(configuration)
-            .messageAdapter(messageProducer)
+            .messageProducer(messageProducer)
         .when()
-            .sendMessage("Hello World")
+            .sendMessage(msg)
         .then()
-            .messageSent("Hello World");
+            .messageSent(msg);
     }
 }
