@@ -1,6 +1,5 @@
 package com.tpg.kafka.app;
 
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
